@@ -144,7 +144,7 @@ jobs:
       - name: Smoke test the image
         run: |
           docker run -d --name smoke -p 8000:8000 -e APP_HOST=0.0.0.0 fastapi-hello:ci
-          for i in $(seq 1 30); do
+          for _ in $(seq 1 30); do
             if curl -fsS http://localhost:8000/api/v1/health/live; then exit 0; fi
             sleep 1
           done
