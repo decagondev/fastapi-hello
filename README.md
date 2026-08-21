@@ -102,23 +102,24 @@ Every response carries `X-Request-ID` and `X-Process-Time-Ms`.
 Dependencies point **inwards**. The domain is the centre and imports nothing
 from the layers around it.
 
-```
-        HTTP
-         │
-    ┌────▼─────────────────────────────────────────┐
-    │  api/          routing, DTO ↔ domain, deps   │
-    ├────▼─────────────────────────────────────────┤
-    │  services/     use cases, orchestration      │
-    ├────▼─────────────────────────────────────────┤
-    │  domain/       entities, ports, rules        │  ← no framework imports
-    └────▲─────────────────────────────────────────┘
-         │ implements ports
-    ┌────┴─────────────────────────────────────────┐
-    │  infrastructure/  repositories, clock,       │
-    │                   formatters                 │
-    └──────────────────────────────────────────────┘
-                     ▲
-          core/container.py wires it all together
+```mermaid
+flowchart TD
+    http(["HTTP request"])
+
+    api["<b>api/</b> · schemas/ · middleware/<br/>routing · DTO ↔ domain · deps"]
+    services["<b>services/</b><br/>use cases · orchestration"]
+    domain["<b>domain/</b><br/>entities · ports · rules<br/>imports nothing outward"]
+    infra["<b>infrastructure/</b><br/>repositories · clock · formatters"]
+    container["<b>core/container.py</b><br/>composition root"]
+
+    http --> api
+    api --> services
+    services -->|depends on ports| domain
+    infra -. implements ports .-> domain
+    container -. builds .-> services
+    container -. builds .-> infra
+
+    style domain stroke-width:3px
 ```
 
 The rule enforced by review (and by the import graph) is simple:

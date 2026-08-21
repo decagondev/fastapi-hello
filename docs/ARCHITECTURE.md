@@ -10,28 +10,27 @@ how to extend it without eroding it.
 
 **Dependencies point inwards.**
 
-```
-        ┌──────────────────────────────────────────────────┐
-        │  api/            HTTP: routing, DTOs, deps       │
-        │  schemas/        pydantic request/response models│
-        │  middleware/     request id, timing              │
-        └───────────────────────┬──────────────────────────┘
-                                │ calls
-        ┌───────────────────────▼──────────────────────────┐
-        │  services/       use cases, orchestration        │
-        └───────────────────────┬──────────────────────────┘
-                                │ depends on ports
-        ┌───────────────────────▼──────────────────────────┐
-        │  domain/         entities, ports, exceptions     │
-        │                  ← imports nothing outward       │
-        └───────────────────────▲──────────────────────────┘
-                                │ implements ports
-        ┌───────────────────────┴──────────────────────────┐
-        │  infrastructure/ clock, repositories, formatters │
-        └──────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph outer["HTTP edge"]
+        direction LR
+        api["<b>api/</b><br/>routing · DTOs · deps"]
+        schemas["<b>schemas/</b><br/>pydantic request/response models"]
+        mw["<b>middleware/</b><br/>request id · timing"]
+    end
 
-                  core/container.py  ← the only module that
-                  knows which concrete class is in use
+    services["<b>services/</b><br/>use cases · orchestration"]
+    domain["<b>domain/</b><br/>entities · ports · exceptions<br/>imports nothing outward"]
+    infra["<b>infrastructure/</b><br/>clock · repositories · formatters"]
+    container["<b>core/container.py</b><br/>the only module that knows<br/>which concrete class is in use"]
+
+    api -->|calls| services
+    services -->|depends on ports| domain
+    infra -. implements ports .-> domain
+    container -. constructs .-> services
+    container -. constructs .-> infra
+
+    style domain stroke-width:3px
 ```
 
 `domain/` sits at the centre and imports nothing from the layers around it —
@@ -137,22 +136,36 @@ policy does not depend on low-level detail; both depend on the abstraction.
 
 ## Request lifecycle
 
-```
-HTTP request
-  → RequestContextMiddleware   assign/echo X-Request-ID into a ContextVar
-  → TimingMiddleware           start timer
-  → CORS (if configured)
-  → FastAPI routing + pydantic validation
-  → endpoint  (api/v1/endpoints/…)
-  → Depends   (api/deps.py → app.state.container)
-  → GreetingService.greet()
-      → GreetingTemplateRepository.get()
-      → FormatterRegistry.resolve() → formatter.format()
-      → Clock.now()
-  → GreetingResponse.from_domain()
-  ← TimingMiddleware  adds X-Process-Time-Ms, logs the line
-  ← RequestContextMiddleware  adds X-Request-ID
-HTTP response
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant RC as RequestContextMiddleware
+    participant T as TimingMiddleware
+    participant EP as Endpoint · api/v1/endpoints
+    participant S as GreetingService
+    participant R as GreetingTemplateRepository
+    participant F as FormatterRegistry
+    participant K as Clock
+
+    C->>RC: HTTP request
+    RC->>RC: assign/echo X-Request-ID into a ContextVar
+    RC->>T: pass through
+    T->>T: start timer
+    T->>EP: CORS if configured, then routing + pydantic validation
+    EP->>EP: Depends → app.state.container (api/deps.py)
+    EP->>S: greet(recipient, locale)
+    S->>R: get(locale)
+    R-->>S: GreetingTemplate or None
+    S->>F: resolve(locale)
+    F-->>S: GreetingFormatter
+    S->>K: now()
+    K-->>S: timezone-aware datetime
+    S-->>EP: Greeting
+    EP->>EP: GreetingResponse.from_domain()
+    EP-->>T: response
+    T-->>RC: adds X-Process-Time-Ms, logs the line
+    RC-->>C: adds X-Request-ID
 ```
 
 Errors short-circuit into `core/errors.py`, which turns any `DomainError` into

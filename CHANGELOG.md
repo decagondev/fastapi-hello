@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Render the architecture, layering and request-lifecycle diagrams as
+  Mermaid instead of ASCII art in `README.md` and `docs/ARCHITECTURE.md`
+
 ### Deprecated
 
 ### Removed
