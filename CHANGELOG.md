@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix `actionlint` failures in CI: use `_` for the unused smoke-test loop
   variable in `ci.yml` and rename `language` to `languages` on
   `github/codeql-action/init` in `codeql.yml`
+- Add `uvicorn` to the `mypy` pre-commit hook's `additional_dependencies` so
+  the isolated hook environment can resolve `import uvicorn` in
+  `src/app/__main__.py`
 
 ### Security
 
