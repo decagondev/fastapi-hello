@@ -1,0 +1,73 @@
+name: 🐛 Bug report
+description: Something behaves differently from how it is documented
+title: "bug: "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please do **not** file security vulnerabilities here —
+        follow [SECURITY.md](../blob/main/SECURITY.md) instead.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true
+        - label: I am running a supported Python version (3.11+)
+          required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Describe the actual behaviour.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Ideally a minimal request or failing test.
+      placeholder: |
+        1. Start the app with `make run`
+        2. curl "http://127.0.0.1:8000/api/v1/greetings/hello?locale=..."
+        3. Observe ...
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, traceback, or response body
+      description: Include the `X-Request-ID` header value if you have it.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit SHA
+      placeholder: v0.1.0 / 4f3a91c
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where did this happen?
+      options: [Local, Docker, CI, Staging, Production]
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.12.4"
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else

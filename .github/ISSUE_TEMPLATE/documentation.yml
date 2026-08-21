@@ -1,0 +1,22 @@
+name: 📚 Documentation
+description: Something is missing, wrong, or confusing in the docs
+title: "docs: "
+labels: ["documentation", "good first issue"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      placeholder: README.md § Configuration
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording

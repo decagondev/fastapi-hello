@@ -1,0 +1,29 @@
+name: Stale issues and PRs
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: 45
+          days-before-close: 14
+          exempt-issue-labels: "pinned,security,roadmap,good first issue"
+          exempt-pr-labels: "pinned,security,work in progress"
+          stale-issue-message: >
+            This issue has had no activity for 45 days. It will close in 14 days
+            unless there is a new comment. If it is still relevant, a short note
+            saying so is enough to keep it open.
+          stale-pr-message: >
+            This pull request has had no activity for 45 days. It will close in
+            14 days unless there is new activity. Draft PRs are welcome if you
+            need more time.

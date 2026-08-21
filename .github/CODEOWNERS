@@ -1,0 +1,15 @@
+# Every file needs a reviewer. Later matches win.
+*                           @your-org/maintainers
+
+# The architecture is the product here: changes to the inner layers or the
+# wiring get an extra pair of eyes.
+/src/app/domain/            @your-org/maintainers @your-org/architects
+/src/app/core/container.py  @your-org/maintainers @your-org/architects
+/docs/ARCHITECTURE.md       @your-org/architects
+/docs/adr/                  @your-org/architects
+
+# Supply chain and pipeline changes.
+/.github/                   @your-org/platform
+/Dockerfile                 @your-org/platform
+/pyproject.toml             @your-org/platform @your-org/maintainers
+/SECURITY.md                @your-org/security

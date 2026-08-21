@@ -1,0 +1,39 @@
+domain:
+  - changed-files:
+      - any-glob-to-any-file: "src/app/domain/**"
+
+services:
+  - changed-files:
+      - any-glob-to-any-file: "src/app/services/**"
+
+infrastructure:
+  - changed-files:
+      - any-glob-to-any-file: "src/app/infrastructure/**"
+
+api:
+  - changed-files:
+      - any-glob-to-any-file: ["src/app/api/**", "src/app/schemas/**"]
+
+core:
+  - changed-files:
+      - any-glob-to-any-file: ["src/app/core/**", "src/app/middleware/**"]
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: "tests/**"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md", "docs/**"]
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/**", ".pre-commit-config.yaml"]
+
+docker:
+  - changed-files:
+      - any-glob-to-any-file: ["Dockerfile", "docker-compose.yml", ".dockerignore"]
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ["pyproject.toml", "uv.lock", "requirements*.txt"]

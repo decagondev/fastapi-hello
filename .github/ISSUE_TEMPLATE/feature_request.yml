@@ -1,0 +1,43 @@
+name: ✨ Feature request
+description: Propose new behaviour
+title: "feat: "
+labels: ["enhancement", "needs triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What can't you do today? Describe the problem, not your preferred solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What you would like to happen, including the API shape if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Which layer does this most likely touch?
+      description: See docs/ARCHITECTURE.md. A guess is fine.
+      options:
+        - domain (entities, rules, ports)
+        - services (use cases)
+        - infrastructure (adapters)
+        - api (endpoints, schemas)
+        - core (config, logging, wiring)
+        - tooling / CI
+        - not sure
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Compatibility
+      options:
+        - label: This would be a breaking change
+        - label: I am willing to open a pull request for this

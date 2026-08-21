@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    image: fastapi-hello:local
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENVIRONMENT: local
+      APP_LOG_JSON: "false"
+      APP_LOG_LEVEL: DEBUG
+      APP_DOCS_ENABLED: "true"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/api/v1/health/live"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp
