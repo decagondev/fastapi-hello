@@ -14,7 +14,7 @@ Only the latest minor release receives security fixes.
 **Please do not open a public issue for a security problem.**
 
 Report it privately through
-[GitHub Security Advisories](https://github.com/your-org/fastapi-hello/security/advisories/new),
+[GitHub Security Advisories](https://github.com/decagondev/fastapi-hello/security/advisories/new),
 or by email to **security@example.com**.
 
 Please include:

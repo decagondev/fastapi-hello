@@ -32,9 +32,9 @@ You don't have to write code to help:
 
 | Contribution | Start here |
 | ------------ | ---------- |
-| Report a bug | [Bug report form](https://github.com/your-org/fastapi-hello/issues/new?template=bug_report.yml) |
-| Propose a feature | [Feature request form](https://github.com/your-org/fastapi-hello/issues/new?template=feature_request.yml) |
-| Improve docs | [Docs issue](https://github.com/your-org/fastapi-hello/issues/new?template=documentation.yml), or just open a PR |
+| Report a bug | [Bug report form](https://github.com/decagondev/fastapi-hello/issues/new?template=bug_report.yml) |
+| Propose a feature | [Feature request form](https://github.com/decagondev/fastapi-hello/issues/new?template=feature_request.yml) |
+| Improve docs | [Docs issue](https://github.com/decagondev/fastapi-hello/issues/new?template=documentation.yml), or just open a PR |
 | Review a PR | Any open PR — a second opinion is always welcome |
 | Report a vulnerability | [SECURITY.md](./SECURITY.md) — **never** a public issue |
 
@@ -51,7 +51,7 @@ approach. It is far less frustrating than having a finished PR redirected.
 Requires **Python 3.11+** and **git**.
 
 ```bash
-git clone https://github.com/your-org/fastapi-hello.git
+git clone https://github.com/decagondev/fastapi-hello.git
 cd fastapi-hello
 
 make install        # venv + dev dependencies + git hooks
@@ -286,8 +286,8 @@ major, new backwards-compatible behaviour bumps minor, fixes bump patch.
 
 ## Getting help
 
-- **Questions:** [Discussions](https://github.com/your-org/fastapi-hello/discussions)
-- **Bugs:** [issue tracker](https://github.com/your-org/fastapi-hello/issues)
+- **Questions:** [Discussions](https://github.com/decagondev/fastapi-hello/discussions)
+- **Bugs:** [issue tracker](https://github.com/decagondev/fastapi-hello/issues)
 - **Vulnerabilities:** [SECURITY.md](./SECURITY.md)
 - **Stuck on a PR:** comment on it and tag a maintainer; we would much rather
   help than watch a contribution stall.

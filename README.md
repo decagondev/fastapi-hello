@@ -1,6 +1,6 @@
 # FastAPI Hello
 
-[![CI](https://github.com/your-org/fastapi-hello/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/fastapi-hello/actions/workflows/ci.yml)
+[![CI](https://github.com/decagondev/fastapi-hello/actions/workflows/ci.yml/badge.svg)](https://github.com/decagondev/fastapi-hello/actions/workflows/ci.yml)
 [![codecov](https://img.shields.io/badge/coverage-90%25%20min-brightgreen)](./pyproject.toml)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
@@ -38,7 +38,7 @@ but plain `pip` works everywhere.
 
 ```bash
 # 1. Clone and enter
-git clone https://github.com/your-org/fastapi-hello.git
+git clone https://github.com/decagondev/fastapi-hello.git
 cd fastapi-hello
 
 # 2. Install (uv)

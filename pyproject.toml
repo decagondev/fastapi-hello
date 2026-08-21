@@ -46,9 +46,9 @@ docs = ["mkdocs-material>=9.5", "mkdocstrings[python]>=0.26"]
 fastapi-hello = "app.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/your-org/fastapi-hello"
-Issues = "https://github.com/your-org/fastapi-hello/issues"
-Changelog = "https://github.com/your-org/fastapi-hello/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/decagondev/fastapi-hello"
+Issues = "https://github.com/decagondev/fastapi-hello/issues"
+Changelog = "https://github.com/decagondev/fastapi-hello/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/app"]

@@ -1,15 +1,15 @@
 # Every file needs a reviewer. Later matches win.
-*                           @your-org/maintainers
+*                           @decagondev
 
 # The architecture is the product here: changes to the inner layers or the
 # wiring get an extra pair of eyes.
-/src/app/domain/            @your-org/maintainers @your-org/architects
-/src/app/core/container.py  @your-org/maintainers @your-org/architects
-/docs/ARCHITECTURE.md       @your-org/architects
-/docs/adr/                  @your-org/architects
+/src/app/domain/            @decagondev
+/src/app/core/container.py  @decagondev
+/docs/ARCHITECTURE.md       @decagondev
+/docs/adr/                  @decagondev
 
 # Supply chain and pipeline changes.
-/.github/                   @your-org/platform
-/Dockerfile                 @your-org/platform
-/pyproject.toml             @your-org/platform @your-org/maintainers
-/SECURITY.md                @your-org/security
+/.github/                   @decagondev
+/Dockerfile                 @decagondev
+/pyproject.toml             @decagondev
+/SECURITY.md                @decagondev

@@ -22,7 +22,7 @@ FROM python:3.12-slim AS runtime
 
 LABEL org.opencontainers.image.title="fastapi-hello" \
       org.opencontainers.image.description="A modular, SOLID-by-design FastAPI service" \
-      org.opencontainers.image.source="https://github.com/your-org/fastapi-hello" \
+      org.opencontainers.image.source="https://github.com/decagondev/fastapi-hello" \
       org.opencontainers.image.licenses="MIT"
 
 ENV PATH="/opt/venv/bin:$PATH" \
